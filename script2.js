@@ -53,48 +53,49 @@ function desenhar() {
     requestAnimationFrame(desenhar);
 }
 
-const h1 = document.querySelector('h1');
-const h2 = document.querySelector('h2');
-const botao = document.querySelector('.conteudo a');
-
-const textoH1 = h1.textContent;
-const textoH2 = h2.textContent;
-
-h1.textContent = '';
-h2.textContent = '';
-
-function digitar(elemento, texto, velocidade, callback) {
-    let i = 0;
-    elemento.style.opacity = 1;
-
-    const placeholder = document.createElement('span');
-    placeholder.style.visibility = 'hidden';
-    placeholder.textContent = texto;
-    elemento.appendChild(placeholder);
-
-    const visivel = document.createElement('span');
-    elemento.insertBefore(visivel, placeholder);
-
-    const intervalo = setInterval(() => {
-        visivel.textContent += texto[i];
-        placeholder.textContent = texto.slice(i + 1);
-        i++;
-        if (i === texto.length) {
-            clearInterval(intervalo);
-            if (callback) callback();
-        }
-    }, velocidade);
-}
-
-setTimeout(() => {
-    digitar(h1, textoH1, 70, () => {
-        setTimeout(() => {
-            digitar(h2, textoH2, 70, () => {
-                setTimeout(() => botao.classList.add('visivel'), 500);
-            });
-        }, 400);
-    });
-}, 500);
-
 desenhar();
 
+const titulo = document.querySelector('.titulo h1');
+const subtitulo = document.querySelector('.subtitulo');
+
+setTimeout(() => titulo.classList.add('visivel'), 500);
+setTimeout(() => subtitulo.classList.add('visivel'), 1200);
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visivel');
+        } else {
+            entry.target.classList.remove('visivel');
+        }
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.card').forEach(card => {
+    observer.observe(card);
+});
+
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
+const modalNome = document.getElementById('modalNome');
+const modalFrase = document.getElementById('modalFrase');
+const modalFechar = document.getElementById('modalFechar');
+
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+        modalImg.src = card.dataset.img;
+        modalNome.textContent = card.dataset.nome;
+        modalFrase.textContent = card.dataset.frase;
+        modal.classList.add('aberto');
+    });
+});
+
+modalFechar.addEventListener('click', () => {
+    modal.classList.remove('aberto');
+});
+
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.classList.remove('aberto');
+    }
+});

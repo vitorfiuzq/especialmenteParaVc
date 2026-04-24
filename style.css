@@ -13,18 +13,6 @@ canvas {
     z-index: 0;
 }
 
-h1 {
-    color: white;
-    font-size: 5rem;
-    line-height: 1.1;
-    margin: 0;
-}
-
-h2 {
-    color: white;
-    margin-bottom: 50px;
-}
-
 .conteudo {
     position: fixed;
     top: 50%;
@@ -37,30 +25,38 @@ h2 {
     z-index: 1;
 }
 
-.conteudo h1,
-.conteudo h2,
-.conteudo a {
+h1 {
+    color: #e8d5b0;
+    font-size: 5rem;
+    line-height: 1.1;
+    margin: 0;
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+h2 {
+    color: #c4a882;
+    margin-bottom: 50px;
+    opacity: 0;
 }
 
 .conteudo a {
+    opacity: 0;
+    transform: translateY(20px);
     display: inline-block;
     padding: 12px 32px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(180, 120, 80, 0.4);
+    color: #e8d5b0;
     text-decoration: none;
     border-radius: 30px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(100, 20, 20, 0.15);
     backdrop-filter: blur(6px);
     letter-spacing: 0.05em;
     transition: opacity 0.8s ease, transform 0.8s ease, background 0.3s ease, border 0.3s ease;
 }
 
 .conteudo a:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(120, 30, 30, 0.3);
+    border-color: rgba(200, 150, 100, 0.7);
 }
 
 .visivel {
