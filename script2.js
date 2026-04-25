@@ -71,8 +71,8 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.2 });
 
-document.querySelectorAll('.card').forEach(card => {
-    observer.observe(card);
+document.querySelectorAll('.card, .carta').forEach(el => {
+    observer.observe(el);
 });
 
 const modal = document.getElementById('modal');
