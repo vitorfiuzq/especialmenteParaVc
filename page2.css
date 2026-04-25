@@ -29,6 +29,8 @@ canvas {
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .titulo h1 {
@@ -60,6 +62,7 @@ canvas {
     transform: translateY(0);
 }
 
+/* Cards */
 .cards {
     min-height: 100vh;
     display: flex;
@@ -70,6 +73,7 @@ canvas {
     width: 100%;
     padding: 60px 20px;
     box-sizing: border-box;
+    flex-wrap: wrap;
 }
 
 .card {
@@ -120,6 +124,7 @@ canvas {
     font-style: italic;
 }
 
+/* Modal */
 .modal {
     position: fixed;
     top: 0;
@@ -165,6 +170,7 @@ canvas {
     color: #c0392b;
     font-size: 1.2rem;
     cursor: pointer;
+    z-index: 1;
 }
 
 .modal-conteudo img {
@@ -201,8 +207,10 @@ canvas {
     padding: 24px;
     box-sizing: border-box;
     text-align: center;
+    overflow-y: auto;
 }
 
+/* Carta */
 .carta-secao {
     min-height: 100vh;
     display: flex;
@@ -247,4 +255,118 @@ canvas {
     padding-top: 8px;
     white-space: pre-wrap;
     font-style: italic;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+    .titulo h1 {
+        font-size: 4rem;
+    }
+
+    .subtitulo {
+        font-size: 1.6rem;
+    }
+
+    .cards {
+        gap: 16px;
+    }
+
+    .card {
+        width: 220px;
+    }
+
+    .card img {
+        height: 300px;
+    }
+
+    .carta {
+        width: 90%;
+        padding: 0 40px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .titulo h1 {
+        font-size: 2.8rem;
+    }
+
+    .subtitulo {
+        font-size: 1.2rem;
+    }
+
+    .cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        min-height: unset;
+        padding: 40px 20px;
+    }
+
+    .card {
+        width: 85%;
+        max-width: 360px;
+    }
+
+    .card img {
+        height: 260px;
+    }
+
+    /* Modal em coluna no mobile */
+    .modal-conteudo {
+        flex-direction: column;
+        width: 90% !important;
+        height: auto !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .modal-conteudo img {
+        width: 100%;
+        height: 220px;
+    }
+
+    .modal-texto {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .modal-conteudo h2 {
+        font-size: 1.4rem;
+    }
+
+    .modal-conteudo p {
+        font-size: 1rem;
+        padding: 0 16px 20px 16px;
+    }
+
+    .carta {
+        width: 95%;
+        padding: 0 24px;
+    }
+
+    .carta-texto {
+        font-size: 1.1rem;
+        line-height: 40px;
+    }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
+    .titulo h1 {
+        font-size: 2rem;
+    }
+
+    .subtitulo {
+        font-size: 1rem;
+    }
+
+    .card {
+        width: 95%;
+    }
+
+    .carta-texto {
+        font-size: 1rem;
+    }
 }

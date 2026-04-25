@@ -23,6 +23,8 @@ canvas {
     max-width: 900px;
     text-align: center;
     z-index: 1;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 h1 {
@@ -62,4 +64,34 @@ h2 {
 .visivel {
     opacity: 1 !important;
     transform: translateY(0) !important;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+        margin-bottom: 36px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 1rem;
+        margin-bottom: 28px;
+    }
+
+    .conteudo a {
+        padding: 10px 24px;
+        font-size: 0.95rem;
+    }
 }
