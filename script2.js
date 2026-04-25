@@ -80,22 +80,50 @@ const modalImg = document.getElementById('modalImg');
 const modalNome = document.getElementById('modalNome');
 const modalFrase = document.getElementById('modalFrase');
 const modalFechar = document.getElementById('modalFechar');
+const conteudo = document.querySelector('.modal-conteudo');
 
 document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
+        const rect = card.getBoundingClientRect();
+
+        conteudo.style.top = rect.top + 'px';
+        conteudo.style.left = rect.left + 'px';
+        conteudo.style.width = rect.width + 'px';
+        conteudo.style.height = rect.height + 'px';
+        conteudo.style.transform = 'none';
+
         modalImg.src = card.dataset.img;
         modalNome.textContent = card.dataset.nome;
         modalFrase.textContent = card.dataset.frase;
+
+        card.classList.add('selecionado');
         modal.classList.add('aberto');
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                conteudo.style.top = '50%';
+                conteudo.style.left = '50%';
+                conteudo.style.width = '600px';
+                conteudo.style.height = rect.height + 'px';
+                conteudo.style.transform = 'translate(-50%, -50%)';
+            });
+        });
     });
 });
 
-modalFechar.addEventListener('click', () => {
-    modal.classList.remove('aberto');
+modalFechar.addEventListener('click', fechar);
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) fechar();
 });
 
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.classList.remove('aberto');
-    }
-});
+function fechar() {
+    modal.classList.remove('aberto');
+    document.querySelectorAll('.card.selecionado').forEach(c => c.classList.remove('selecionado'));
+    setTimeout(() => {
+        conteudo.style.top = '';
+        conteudo.style.left = '';
+        conteudo.style.width = '';
+        conteudo.style.height = '';
+        conteudo.style.transform = '';
+    }, 500);
+}
