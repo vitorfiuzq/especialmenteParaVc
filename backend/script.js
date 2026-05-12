@@ -86,7 +86,6 @@ const isMobile = () => window.innerWidth <= 768;
 
 document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-        const rect = card.getBoundingClientRect();
 
         modalImg.src = card.dataset.img;
         modalNome.textContent = card.dataset.nome;
@@ -94,28 +93,8 @@ document.querySelectorAll('.card').forEach(card => {
 
         card.classList.add('selecionado');
 
-        if (isMobile()) {
-            // No mobile abre direto no centro sem animação de posição
-            modal.classList.add('aberto');
-        } else {
-            conteudo.style.top = rect.top + 'px';
-            conteudo.style.left = rect.left + 'px';
-            conteudo.style.width = rect.width + 'px';
-            conteudo.style.height = rect.height + 'px';
-            conteudo.style.transform = 'none';
-
-            modal.classList.add('aberto');
-
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    conteudo.style.top = '50%';
-                    conteudo.style.left = '50%';
-                    conteudo.style.width = '600px';
-                    conteudo.style.height = rect.height + 'px';
-                    conteudo.style.transform = 'translate(-50%, -50%)';
-                });
-            });
-        }
+        // 🔥 SEM ANIMAÇÃO DE POSIÇÃO (corrige bug do canto)
+        modal.classList.add('aberto');
     });
 });
 
