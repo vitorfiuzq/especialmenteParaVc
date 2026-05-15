@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Programmer Diaries</title>
+
+    <link rel="stylesheet" href="/assets/menu.css">
+</head>
+
+<body class="login-state">
+
+<canvas id="petalas"></canvas>
+
+<!-- LOGIN -->
+<div class="tela-login" id="login">
+    <h2>Esse é meu diário dedicado a você.</h2>
+
+    <input type="password" id="senha" placeholder="Digite a senha">
+
+    <button onclick="verificar()">Entrar</button>
+</div>
+
+<!-- LIVRO -->
+<div class="livro" id="livro">
+
+    <!-- CAPA -->
+    <div class="capa">
+        <h1 class="book-title">The Programmer Diaries</h1>
+        <p class="subtitulo">diário totalmente dedicado para minha futura esposa!</p>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="conteudo">
+
+        <div class="timeline">
+
+            <div class="entry" data-text="Comecei a escrever este diário. Ainda tudo é novo, mas sinto que isso vai crescer.">
+                <div class="ponto"></div>
+                <div class="date">Dia 3</div>
+                <div class="text"></div>
+            </div>
+
+            <div class="entry" data-text="As páginas começaram a ganhar forma. O projeto já parece vivo.">
+                <div class="ponto"></div>
+                <div class="date">Dia 19</div>
+                <div class="text"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/assets/menu.js"></script>
+</body>
+</html>
