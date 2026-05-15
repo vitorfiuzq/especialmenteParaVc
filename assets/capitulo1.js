@@ -4,51 +4,49 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const estrelas = [];
-for (let i = 0; i < 150; i++) {
-    estrelas.push({
+let petalas = [];
+
+for(let i = 0; i < 40; i++){
+    petalas.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        raio: Math.random() * 1.5,
-        opacidade: Math.random(),
-        velocidadeOpacidade: Math.random() * 0.01 + 0.005
+        r: Math.random() * 6 + 4,
+        d: Math.random() * 1.5 + 1,
+        cor: Math.random() > 0.5 ? "#b3001b" : "#21211e00"
     });
 }
 
-let angulo = 0;
+function desenharGota(ctx, x, y, r){
+    ctx.beginPath();
+    ctx.moveTo(x, y - r * 3);
+    ctx.bezierCurveTo(
+        x + r * 1.5, y - r * 1.5,
+        x + r * 1.5, y + r,
+        x, y + r
+    );
+    ctx.bezierCurveTo(
+        x - r * 1.5, y + r,
+        x - r * 1.5, y - r * 1.5,
+        x, y - r * 3
+    );
+    ctx.fill();
+}
 
-function desenhar() {
-    const cx = canvas.width / 2;
-    const cy = canvas.height / 2;
-    const diagonal = Math.sqrt(cx * cx + cy * cy);
+function desenhar(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
-    const x1 = cx + Math.cos(angulo) * diagonal;
-    const y1 = cy + Math.sin(angulo) * diagonal;
-    const x2 = cx + Math.cos(angulo + Math.PI) * diagonal;
-    const y2 = cy + Math.sin(angulo + Math.PI) * diagonal;
+    for(let p of petalas){
+        ctx.fillStyle = p.cor;
+        desenharGota(ctx, p.x, p.y, p.r);
 
-    const gradiente = ctx.createLinearGradient(x1, y1, x2, y2);
-    gradiente.addColorStop(0, "#000000");
-    gradiente.addColorStop(0.4, "#0d0005");
-    gradiente.addColorStop(0.7, "#1a0010");
-    gradiente.addColorStop(1, "#0a0008");
+        p.y += p.d;
+        p.x += Math.sin(p.y * 0.01);
 
-    ctx.fillStyle = gradiente;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    angulo += 0.003;
-
-    estrelas.forEach(estrela => {
-        estrela.opacidade += estrela.velocidadeOpacidade;
-        if (estrela.opacidade > 1 || estrela.opacidade < 0) {
-            estrela.velocidadeOpacidade *= -1;
+        if(p.y > canvas.height){
+            p.y = 0;
+            p.x = Math.random() * canvas.width;
         }
-
-        ctx.beginPath();
-        ctx.arc(estrela.x, estrela.y, estrela.raio, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${estrela.opacidade})`;
-        ctx.fill();
-    });
+    }
 
     requestAnimationFrame(desenhar);
 }
@@ -86,14 +84,10 @@ const isMobile = () => window.innerWidth <= 768;
 
 document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
-
         modalImg.src = card.dataset.img;
         modalNome.textContent = card.dataset.nome;
         modalFrase.textContent = card.dataset.frase;
-
         card.classList.add('selecionado');
-
-        // 🔥 SEM ANIMAÇÃO DE POSIÇÃO (corrige bug do canto)
         modal.classList.add('aberto');
     });
 });

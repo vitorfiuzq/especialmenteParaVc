@@ -1,11 +1,9 @@
 body {
     margin: 0;
     min-height: 100vh;
-
     background: radial-gradient(circle at top, #1a0000, #000000);
     font-family: Georgia, serif;
     color: #f5f5f5;
-
     overflow-x: hidden;
 }
 
@@ -33,54 +31,109 @@ body.book-state{
     z-index: 0;
 }
 
-/* LOGIN BOX */
+/* LOGIN LIVRO */
 .tela-login{
-    width: 320px;
-    padding: 40px 30px;
-
-    background: linear-gradient(145deg, #0a0a0a, #1a0000);
-    border: 1px solid #5b0000;
-    border-radius: 14px;
-
-    box-shadow:
-        0 0 20px #5b0000,
-        inset 0 0 30px rgba(139, 0, 0, 0.3);
-
-    text-align: center;
+    position: relative;
+    width: 280px;
+    height: 360px;
+    cursor: pointer;
+    perspective: 1000px;
+    z-index: 10;
 }
 
-/* LOGIN TEXT */
-h2{
+.livro-capa{
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #2a0a00, #1a0000, #0d0000);
+    border: 1px solid #5b0000;
+    border-left: 6px solid #8b0000;
+    border-radius: 4px 12px 12px 4px;
+    box-shadow:
+        -6px 6px 30px rgba(0,0,0,0.8),
+        inset -4px 0 15px rgba(91,0,0,0.3),
+        0 0 25px rgba(91,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    transform-origin: left center;
+    transition: transform 1.2s ease, opacity 0.8s ease;
+}
+
+.livro-capa.abrir{
+    transform: rotateY(-160deg);
+    opacity: 0;
+}
+
+.livro-titulo-login{
+    font-size: 1.2rem;
     color: #ff3b3b;
+    letter-spacing: 3px;
+    text-align: center;
     text-shadow: 0 0 10px #5b0000;
-    letter-spacing: 2px;
-    font-weight: normal;
+    font-style: italic;
+    padding: 0 20px;
+}
+
+.cadeado{
+    transition: 0.5s;
+    filter: drop-shadow(0 0 8px #8b0000);
+}
+
+.cadeado.aberto{
+    transform: translateY(-5px);
+    filter: drop-shadow(0 0 15px #ff3b3b);
+}
+
+.cadeado.aberto svg path,
+.cadeado.aberto svg rect,
+.cadeado.aberto svg circle,
+.cadeado.aberto svg line{
+    stroke: #ff3b3b;
+    transition: 0.5s;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.livro-lombada{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, #8b0000, #3a0000, #8b0000);
+    border-radius: 4px 0 0 4px;
 }
 
 /* INPUT */
 input{
-    padding: 12px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 8px;
     border: 1px solid #5b0000;
-    width: 220px;
+    width: 180px;
     text-align: center;
-    background: #0d0d0d;
+    background: rgba(13,13,13,0.8);
     color: #fff;
+    font-size: 0.9rem;
 }
 
 /* BUTTON */
 button{
-    margin-top: 15px;
-    padding: 12px 18px;
-
+    margin-top: 5px;
+    padding: 10px 16px;
     cursor: pointer;
     background: linear-gradient(145deg, #5b0000, #2a0000);
     color: white;
-
     border: 1px solid #8b0000;
-    border-radius: 10px;
-
+    border-radius: 8px;
     transition: 0.3s;
+    font-size: 0.85rem;
 }
 
 button:hover{
@@ -91,28 +144,22 @@ button:hover{
 /* LIVRO */
 .livro{
     display: none;
-
     position: relative;
     z-index: 2;
-
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-
     text-align: center;
 }
 
 /* CAPA */
 .capa{
     height: 100vh;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     transition: 0.8s ease;
-
     opacity: 0;
     transform: translateY(30px);
 }
@@ -131,7 +178,6 @@ button:hover{
 .book-title{
     font-size: 80px;
     margin: 0;
-
     animation: softGlow 6s infinite;
 }
 
@@ -155,21 +201,33 @@ button:hover{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 120px;
+    gap: 400px;
     margin-top: 80px;
     padding: 60px 40px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.timeline.show{
+    opacity: 1;
 }
 
 .timeline::before{
     content: "";
     position: absolute;
     top: 41%;
-    left: 5%;
-    width: 90%;
+    left: 50%;
+    width: 130%;
     height: 2px;
     background: #5b0000;
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
     z-index: 0;
+
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+.timeline.show::before{
+    opacity: 1;
 }
 
 .entry{
@@ -234,8 +292,6 @@ button:hover{
     50% { text-shadow: 0 0 18px #8b0000; }
 }
 
-
-
 /* PAGINAS */
 .paginas{
     padding: 80px 20px 160px;
@@ -249,7 +305,6 @@ button:hover{
     font-weight: normal;
     margin-bottom: 50px;
     text-shadow: 0 0 10px #5b0000;
-
     opacity: 0;
     transform: translateY(30px);
     transition: 0.8s ease;
@@ -276,28 +331,22 @@ button:hover{
     position: relative;
     width: 200px;
     height: 260px;
-
     background: linear-gradient(160deg, #110000, #0a0a0a);
     border: 1px solid #3a0000;
     border-left: 4px solid #8b0000;
     border-radius: 4px 12px 12px 4px;
-
     text-decoration: none;
     color: #f5f5f5;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 14px;
-
     box-shadow:
         -4px 4px 20px rgba(0,0,0,0.7),
         inset -3px 0 10px rgba(91,0,0,0.15),
         0 0 0px #8b0000;
-
     transition: 0.4s ease;
-
     opacity: 0;
     transform: translateY(40px);
 }

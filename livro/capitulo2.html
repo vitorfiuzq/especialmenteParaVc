@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Programmer Diaries</title>
+    <link rel="stylesheet" href="/assets/capitulo2.css">
+</head>
+
+<body>
+
+<canvas id="petalas"></canvas>
+
+<div class="pagina-container">
+
+    <div class="topo">
+        <h1 class="titulo">The Music Diaries</h1>
+        <p class="subtitulo">músicas que me fazem pensar em você</p>
+
+        <div class="player">
+            <div class="player-info">
+                <span class="player-nota">♪</span>
+                <span class="player-nome">tocando agora...</span>
+            </div>
+            <div class="player-barra">
+                <div class="player-progresso"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="citacao-section">
+        <p class="citacao">"A música é o atalho mais curto entre duas almas."</p>
+    </div>
+
+    <div class="conteudo">
+
+        <div class="discos-grid">
+
+            <div class="disco-card" onclick="abrirModal('modal1')">
+                <div class="disco">
+                    <div class="disco-centro"></div>
+                </div>
+                <div class="disco-info">
+                    <div class="disco-titulo">Starboy</div>
+                    <div class="disco-texto">The Weeknd</div>
+                </div>
+            </div>
+
+            <div class="disco-card" onclick="abrirModal('modal2')">
+                <div class="disco">
+                    <div class="disco-centro"></div>
+                </div>
+                <div class="disco-info">
+                    <div class="disco-titulo">Lover</div>
+                    <div class="disco-texto">Taylor Swift</div>
+                </div>
+            </div>
+
+            <div class="disco-card" onclick="abrirModal('modal3')">
+                <div class="disco">
+                    <div class="disco-centro"></div>
+                </div>
+                <div class="disco-info">
+                    <div class="disco-titulo">Perfect</div>
+                    <div class="disco-texto">Ed Sheeran</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal-overlay" id="overlay" onclick="fecharModal()"></div>
+
+    <div class="modal" id="modal1">
+        <button class="modal-fechar" onclick="fecharModal()">✕</button>
+        <div class="modal-disco"><div class="disco-centro"></div></div>
+        <h2 class="modal-titulo">Starboy</h2>
+        <p class="modal-artista">The Weeknd</p>
+        <p class="modal-texto">Essa música me lembra de você toda vez que toca. Não sei explicar direito, mas é algo que sinto aqui.</p>
+    </div>
+
+    <div class="modal" id="modal2">
+        <button class="modal-fechar" onclick="fecharModal()">✕</button>
+        <div class="modal-disco"><div class="disco-centro"></div></div>
+        <h2 class="modal-titulo">Lover</h2>
+        <p class="modal-artista">Taylor Swift</p>
+        <p class="modal-texto">Quando ouço essa música penso em tudo que ainda vamos viver juntos.</p>
+    </div>
+
+    <div class="modal" id="modal3">
+        <button class="modal-fechar" onclick="fecharModal()">✕</button>
+        <div class="modal-disco"><div class="disco-centro"></div></div>
+        <h2 class="modal-titulo">Perfect</h2>
+        <p class="modal-artista">Ed Sheeran</p>
+        <p class="modal-texto">Simples assim: essa música é você pra mim.</p>
+    </div>
+
+</div>
+
+<script src="/assets/capitulo2.js"></script>
+</body>
+</html>

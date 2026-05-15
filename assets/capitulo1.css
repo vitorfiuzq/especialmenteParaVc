@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: 'EB Garamond', serif;
     overflow-x: hidden;
+    background: radial-gradient(circle at top, #1a0000, #000000);
 }
 
 canvas {

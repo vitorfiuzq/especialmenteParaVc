@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Programmer Diaries</title>
 
-    <link rel="stylesheet" href="assets/menu.css">
+    <link rel="stylesheet" href="assets/index.css">
 </head>
 
 <body class="login-state">
@@ -14,11 +14,36 @@
 
 <!-- LOGIN -->
 <div class="tela-login" id="login">
-    <h2>Esse é meu diário dedicado a você.</h2>
-
-    <input type="password" id="senha" placeholder="Digite a senha">
-
-    <button onclick="verificar()">Entrar</button>
+    <div class="livro-lombada"></div>
+    <div class="livro-capa" id="livroCapa">
+        <div class="cadeado" id="cadeado">
+            <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg" width="80" height="100">
+                <!-- ARCO -->
+                <path d="M25 55 Q25 15 50 15 Q75 15 75 55" fill="none" stroke="#8b0000" stroke-width="8" stroke-linecap="round"/>
+                <!-- CORPO -->
+                <rect x="15" y="52" width="70" height="60" rx="8" ry="8" fill="#1a0000" stroke="#8b0000" stroke-width="2"/>
+                <!-- DETALHE SUPERIOR -->
+                <rect x="15" y="52" width="70" height="12" rx="4" ry="4" fill="#2a0000" stroke="#8b0000" stroke-width="1"/>
+                <!-- BURACO DA FECHADURA -->
+                <circle cx="50" cy="76" r="10" fill="#0a0000" stroke="#5b0000" stroke-width="1.5"/>
+                <!-- BURACO INFERIOR -->
+                <rect x="46" y="76" width="8" height="14" rx="3" fill="#0a0000"/>
+                <!-- DETALHES LATERAIS -->
+                <line x1="22" y1="70" x2="22" y2="100" stroke="#3a0000" stroke-width="1.5"/>
+                <line x1="78" y1="70" x2="78" y2="100" stroke="#3a0000" stroke-width="1.5"/>
+                <!-- REBITES -->
+                <circle cx="22" cy="64" r="3" fill="#5b0000"/>
+                <circle cx="78" cy="64" r="3" fill="#5b0000"/>
+                <circle cx="22" cy="104" r="3" fill="#5b0000"/>
+                <circle cx="78" cy="104" r="3" fill="#5b0000"/>
+            </svg>
+        </div>
+        <div class="livro-titulo-login">The Programmer<br>Diaries</div>
+        <div class="login-form">
+            <input type="password" id="senha" placeholder="senha...">
+            <button onclick="verificar()">Abrir</button>
+        </div>
+    </div>
 </div>
 
 <!-- LIVRO -->
@@ -60,11 +85,19 @@
                 <div class="pagina-titulo">Capítulo 1</div>
                 <div class="pagina-desc">O começo de tudo.</div>
             </a>
+            <a class="pagina" href="livro/capitulo2.html">
+                <div class="pagina-dobra"></div>
+                <div class="pagina-numero">02</div>
+                <div class="pagina-titulo">Capítulo 2</div>
+                <div class="pagina-desc"></div>
+            </a>
         </div>
     </div>
 
+    
+
 </div>
 
-<script src="assets/menu.js"></script>
+<script src="assets/index.js"></script>
 </body>
 </html>

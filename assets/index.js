@@ -2,15 +2,33 @@ function verificar(){
     let senha = document.getElementById("senha").value;
 
     if(senha === "euteamo"){
-        document.getElementById("login").style.display = "none";
-        document.getElementById("livro").style.display = "block";
+        sessionStorage.setItem("autenticado", "true");
 
-        document.body.classList.remove("login-state");
-        document.body.classList.add("book-state");
+        document.getElementById("cadeado").classList.add("aberto");
+        document.getElementById("cadeado").querySelector("path").setAttribute("d", "M25 55 Q25 5 50 5 Q75 5 75 55");
+
+        setTimeout(() => {
+            document.getElementById("livroCapa").classList.add("abrir");
+        }, 600);
+
+        setTimeout(() => {
+            mostrarLivro();
+        }, 1800);
+
     } else {
         alert("Senha errada");
         document.getElementById("senha").value = "";
     }
+}
+
+function mostrarLivro(){
+    document.getElementById("login").style.display = "none";
+    document.getElementById("livro").style.display = "block";
+    document.body.classList.remove("login-state");
+    document.body.classList.add("book-state");
+
+    elements.forEach(el => observer.unobserve(el));
+    elements.forEach(el => observer.observe(el));
 }
 
 document.querySelectorAll(".entry").forEach(entry => {
@@ -37,7 +55,6 @@ for(let i = 0; i < 40; i++){
 
 function desenhar(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
-
     ctx.fillStyle = "#b3001b";
 
     for(let p of petalas){
@@ -59,8 +76,8 @@ function desenhar(){
 
 desenhar();
 
-/* SCROLL OBSERVER (ENTRY + CAPA) */
-const elements = document.querySelectorAll(".entry, .capa, .pagina, .paginas-titulo");
+/* SCROLL OBSERVER */
+const elements = document.querySelectorAll(".entry, .capa, .pagina, .paginas-titulo, .timeline");
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -73,7 +90,12 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, {
-    threshold: 0.3
+    threshold: 0.1
 });
 
 elements.forEach(el => observer.observe(el));
+
+/* CHECA AUTENTICAÇÃO */
+if(sessionStorage.getItem("autenticado") === "true"){
+    mostrarLivro();
+}
