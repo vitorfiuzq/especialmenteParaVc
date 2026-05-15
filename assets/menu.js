@@ -60,11 +60,10 @@ function desenhar(){
 desenhar();
 
 /* SCROLL OBSERVER (ENTRY + CAPA) */
-const elements = document.querySelectorAll(".entry, .capa");
+const elements = document.querySelectorAll(".entry, .capa, .pagina, .paginas-titulo");
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-
         if(entry.isIntersecting){
             entry.target.classList.add("show");
             entry.target.classList.remove("hide");
@@ -72,10 +71,9 @@ const observer = new IntersectionObserver((entries) => {
             entry.target.classList.add("hide");
             entry.target.classList.remove("show");
         }
-
     });
 }, {
-    threshold: 0.5
+    threshold: 0.3
 });
 
 elements.forEach(el => observer.observe(el));
